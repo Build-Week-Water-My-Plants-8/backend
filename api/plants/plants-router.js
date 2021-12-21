@@ -25,6 +25,12 @@ router.put('/:id', restricted, (req, res, next) => {
     }).catch(next)
 })
 
+router.delete('/:id', restricted, (req, res, next) => {
+    Plants.remove(req.params.id)
+    .then(confirm => {
+        res.status(200).json({ message: 'plant removed'})
+    }).catch(next)
+})
 
 
 module.exports = router

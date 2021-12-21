@@ -4,6 +4,7 @@ module.exports = {
     getPlants,
     addPlant,
     update,
+    remove,
 }
  function getPlants(user_id) {
     return db("users as u")
@@ -21,4 +22,7 @@ async function addPlant(plant) {
 async function update(plant_id, changes) {
     const [updatedPlant] = await db('plants').where('plant_id', plant_id).update(changes,['plant_id', 'nickname', 'species', 'plant_image', 'h20_freq','user_id'])
     return updatedPlant
+}
+function remove(plant_id){
+    return db('plants').where( 'plant_id', plant_id ).del();
 }
