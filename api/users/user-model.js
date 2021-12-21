@@ -5,6 +5,7 @@ module.exports = {
   get,
   update,
   getById,
+  findBy
 }
 
 
@@ -13,6 +14,9 @@ return db('users')
 }
 function getById (id){
     return db('users').where('user_id', id)
+}
+function findBy(username) {
+    return db('users').where('username', username).first()
 }
 async function add(user) {
     const [newUserObject] = await db('users').insert(user, ['user_id', 'username', 'password'])
