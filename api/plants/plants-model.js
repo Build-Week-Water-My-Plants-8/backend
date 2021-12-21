@@ -3,6 +3,7 @@ const db = require('../data/db-config')
 module.exports = {
     getPlants,
     addPlant,
+    update,
 }
  function getPlants(user_id) {
     return db("users as u")
@@ -15,4 +16,9 @@ module.exports = {
 async function addPlant(plant) {
     const [newUserObject] = await db('plants').insert(plant, ['plant_id', 'nickname', 'species', 'plant_image', 'h20_freq', 'user_id'])
     return newUserObject
+}
+
+async function update(plant_id, changes) {
+    const [updatedPlant] = await db('plants').where('plant_id', plant_id).update(changes,['plant_id', 'nickname', 'species', 'plant_image', 'h20_freq','user_id'])
+    return updatedPlant
 }
