@@ -10,6 +10,13 @@ router.get('/', restricted, (req,res,next)=> {
     }).catch(next)
 })
 
+router.post('/', (req, res, next) => {
+    let plant = req.body
+    Plants.addPlant(plant)
+    .then(newPlant => {
+        res.status(201).json(newPlant)
+    }).catch(next)
+})
 
 
 

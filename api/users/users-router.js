@@ -2,7 +2,6 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('./user-model')
 const {tokenBuilder} = require('./../helpers/token-builder');
-const req = require('express/lib/request');
 const { checkUserExists } =require('./users-middleware')
 
 router.post('/register', (req, res, next) => {

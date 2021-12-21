@@ -22,6 +22,7 @@ async function add(user) {
     const [newUserObject] = await db('users').insert(user, ['user_id', 'username', 'password'])
     return newUserObject
 }
+
 function update() {
 
 }
