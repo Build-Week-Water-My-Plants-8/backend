@@ -2,18 +2,18 @@ const db = require("../data/db-config")
 
 module.exports = {
   add,
-  get,
+  // get,
   update,
   getById,
   findBy
 }
+//MIGHT NOT USE THIS 
+// function get() {
+// return db('users')
+// }
 
-
-function get(){
-return db('users')
-}
-function getById (id){
-    return db('users').where('user_id', id)
+function getById (user_id){
+    return db('users').where('user_id', user_id)
 }
 function findBy(username) {
     return db('users').where('username', username).first()
@@ -23,6 +23,7 @@ async function add(user) {
     return newUserObject
 }
 
-function update() {
-
+async function update(user_id, changes) {
+    const [updatedUser] = await db('users').where('user_id', user_id).update(changes,['user_id', 'username','password', 'phone_number'])
+    return updatedUser
 }
