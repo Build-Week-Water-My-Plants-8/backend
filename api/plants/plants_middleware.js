@@ -15,6 +15,20 @@ const restricted = (req, res, next) => {
     })
 }
 
+const validateInfo = async (req, res, next) => {
+    try {
+        const { nickname, species, h20_freq} = req.body
+        if(!nickname || !species || !h20_freq) {
+            next({status:401, message: 'Nickname, Species, and h20_freq are required!'})
+        } else {
+            next()
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     restricted,
+    validateInfo,
 }
