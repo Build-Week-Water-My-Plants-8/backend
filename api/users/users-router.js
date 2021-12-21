@@ -2,10 +2,14 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('./user-model')
 const {tokenBuilder} = require('./../helpers/token-builder');
-const { checkUserExists } =require('./users-middleware');
+const { 
+    checkUserExists,
+    checkUsernameFree,
+    validateCredentials,
+    } = require('./users-middleware');
 const { restricted } = require('../plants/plants_middleware');
 
-router.post('/register', (req, res, next) => {
+router.post('/register', checkUsernameFree, validateCredentials, (req, res, next) => {
     let user = req.body
     const hash = bcrypt.hashSync(user.password, 8)
     user.password = hash
@@ -37,7 +41,7 @@ router.post("/login", checkUserExists, (req, res, next) => {
     }).catch(next)
 })
 
-  router.put('/:id', (req, res, next) => {
+  router.put('/:id', validateCredentials, (req, res, next) => {
     let user = req.body
     const hash = bcrypt.hashSync(user.password, 8)
     user.password = hash
