@@ -41,7 +41,7 @@ router.post("/login", checkUserExists, (req, res, next) => {
     }).catch(next)
 })
 
-  router.put('/:id', validateCredentials, (req, res, next) => {
+  router.put('/:id', restricted, validateCredentials, (req, res, next) => {
     let user = req.body
     const hash = bcrypt.hashSync(user.password, 8)
     user.password = hash
@@ -51,7 +51,6 @@ router.post("/login", checkUserExists, (req, res, next) => {
         res.status(200).json(updatedPlant)
     }).catch(next)
 })
-
 
 
 
