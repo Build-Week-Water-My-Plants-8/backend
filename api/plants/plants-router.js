@@ -30,7 +30,7 @@ router.put('/:id', validateInfo, (req, res, next) => {
 //[DELETE] api/plants/:id takes in the id of the plant and returns a message saying that the plant was removed
 router.delete('/:id', (req, res, next) => {
     Plants.remove(req.params.id)
-    .then(confirm => {
+    .then(() => {
         res.status(200).json({ message: `plant with id ${req.params.id} removed`})
     }).catch(next)
 })

@@ -45,14 +45,6 @@ const validateCredentials = async (req, res, next) => {
     }
     
 }
-// function doSomething(x) {
-//   if(typeof(x) === 'string') {
-//     alert('x is a string')
-//   } else if(typeof(x) === 'number') {
-//     alert('x is a number')
-//   }
-// }
-
 
 module.exports = {
     checkUserExists,
