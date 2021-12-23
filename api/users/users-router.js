@@ -34,7 +34,7 @@ router.post("/login", checkUserExists, (req, res, next) => {
           }
   });
 
-  router.get('/', restricted, (req,res,next)=> {
+  router.get('/:id', restricted, (req,res,next)=> {
     User.getById(req.decodedJwt.user_id)
     .then(user => {
        res.status(201).json(user)
